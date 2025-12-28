@@ -1,0 +1,29 @@
+@import 'tailwindcss';
+
+@theme {
+  /* 1. Define Brand Fonts */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* 2. Define Brand Colors */
+  /* We use the specific hex codes we decided on earlier */
+  --color-brand-dark: #050505; /* Deepest void black */
+  --color-brand-gray: #121212; /* Secondary background */
+  --color-brand-accent: #7c3aed; /* Violet (Code/Magic) */
+  --color-brand-glow: #a78bfa; /* Lighter violet for glows */
+
+  /* 3. Define Custom Animations */
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 4. Base Styles & Global Utilities */
+@layer base {
+  body {
+    @apply bg-brand-dark text-white font-sans antialiased overflow-x-hidden;
+  }
+}
+
+/* 5. Custom Utility for Glassmorphism (Optional but recommended for your brand) */
+@utility glass-panel {
+  @apply bg-white/5 backdrop-blur-md border border-white/10;
+}
