@@ -50,7 +50,6 @@ export const BrandLayout = ({ children }: { children: React.ReactNode }) => {
             Coded_Gifts
           </span>
         </motion.a>
-
         {/* */}
       </nav>
 
@@ -133,7 +132,7 @@ export const BrandLayout = ({ children }: { children: React.ReactNode }) => {
       {/* 4. The Brand Signature */}
       <footer className="fixed bottom-10 left-0 w-full z-40 pointer-events-none flex flex-col items-center">
         <p className="font-mono text-[9px] tracking-[0.4em] uppercase opacity-30">
-          Digital expressions, crafted in code
+          Digital expressions. crafted in code.
         </p>
       </footer>
     </div>
