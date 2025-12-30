@@ -70,7 +70,10 @@ export const BrandLayout = ({ children }: { children: React.ReactNode }) => {
             <input
               type="text"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+                const val = e.target.value.replace(/[^a-zA-Z\s.!]/g, '');
+                if (val.length <= 25) setName(val);
+              }}
               placeholder="Enter name to personalize..."
               className="bg-transparent border-none outline-none text-[13px] font-sans w-full text-white placeholder:text-white/10 py-3"
             />

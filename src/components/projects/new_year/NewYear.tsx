@@ -268,6 +268,15 @@ function NewYearProject() {
               }}
               className="text-center"
             >
+              <div className="flex items-center justify-center mb-8 gap-2 text-[#7c3aed]">
+                <Timer size={14} className="animate-pulse" />
+                {}
+                <span className="font-mono font-semibold text-[14px] tracking-[0.5em] uppercase">
+                  {targetName && targetName !== ''
+                    ? `Loading 2026 digital keepsake for ${targetName}...`
+                    : 'Loading 2026 '}
+                </span>
+              </div>
               <div className="flex flex-wrap justify-center gap-4 md:gap-10 font-bold text-6xl md:text-9xl tracking-tighter">
                 {Object.entries(timeLeft).map(([unit, val]) => (
                   <div key={unit} className="flex flex-col">
@@ -277,12 +286,6 @@ function NewYearProject() {
                     </span>
                   </div>
                 ))}
-              </div>
-              <div className="flex items-center justify-center mt-4 gap-2 text-[#7c3aed]">
-                <Timer size={14} className="animate-pulse" />
-                <span className="font-mono text-[14px] tracking-[0.5em] uppercase">
-                  Loading 2026
-                </span>
               </div>
             </motion.div>
           )}
