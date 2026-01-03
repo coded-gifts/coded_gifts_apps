@@ -19,6 +19,7 @@
     "@types/three": "^0.182.0",
     "canvas-confetti": "^1.9.4",
     "dayjs": "^1.11.19",
+    "gsap": "^3.14.2",
     "lucide-react": "^0.562.0",
     "motion": "^12.23.26",
     "postprocessing": "^6.38.2",
