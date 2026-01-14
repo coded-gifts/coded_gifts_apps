@@ -7,3 +7,18 @@ export const decodeName = (encoded: string) => {
     return '';
   }
 };
+
+export const encodeWeddingData = (n1: string, n2: string, date: string) => {
+  const data = `${n1}|${n2}|${date}`;
+  return btoa(encodeURIComponent(data)).replace(/=/g, '');
+};
+
+export const decodeWeddingData = (encoded: string) => {
+  try {
+    const decoded = decodeURIComponent(atob(encoded));
+    const [n1, n2, date] = decoded.split('|');
+    return { n1, n2, date };
+  } catch {
+    return null;
+  }
+};

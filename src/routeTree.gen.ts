@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as NewyearRouteImport } from './routes/newyear'
+import { Route as ForeverRouteImport } from './routes/forever'
 import { Route as IndexRouteImport } from './routes/index'
 
 const NewyearRoute = NewyearRouteImport.update({
   id: '/newyear',
   path: '/newyear',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForeverRoute = ForeverRouteImport.update({
+  id: '/forever',
+  path: '/forever',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/forever': typeof ForeverRoute
   '/newyear': typeof NewyearRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/forever': typeof ForeverRoute
   '/newyear': typeof NewyearRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/forever': typeof ForeverRoute
   '/newyear': typeof NewyearRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/newyear'
+  fullPaths: '/' | '/forever' | '/newyear'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/newyear'
-  id: '__root__' | '/' | '/newyear'
+  to: '/' | '/forever' | '/newyear'
+  id: '__root__' | '/' | '/forever' | '/newyear'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ForeverRoute: typeof ForeverRoute
   NewyearRoute: typeof NewyearRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/newyear'
       fullPath: '/newyear'
       preLoaderRoute: typeof NewyearRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forever': {
+      id: '/forever'
+      path: '/forever'
+      fullPath: '/forever'
+      preLoaderRoute: typeof ForeverRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ForeverRoute: ForeverRoute,
   NewyearRoute: NewyearRoute,
 }
 export const routeTree = rootRouteImport
