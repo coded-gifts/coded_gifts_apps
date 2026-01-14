@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WeddingcardRouteImport } from './routes/weddingcard'
 import { Route as NewyearRouteImport } from './routes/newyear'
 import { Route as ForeverRouteImport } from './routes/forever'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WeddingcardRoute = WeddingcardRouteImport.update({
+  id: '/weddingcard',
+  path: '/weddingcard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NewyearRoute = NewyearRouteImport.update({
   id: '/newyear',
   path: '/newyear',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/forever': typeof ForeverRoute
   '/newyear': typeof NewyearRoute
+  '/weddingcard': typeof WeddingcardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/forever': typeof ForeverRoute
   '/newyear': typeof NewyearRoute
+  '/weddingcard': typeof WeddingcardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/forever': typeof ForeverRoute
   '/newyear': typeof NewyearRoute
+  '/weddingcard': typeof WeddingcardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/forever' | '/newyear'
+  fullPaths: '/' | '/forever' | '/newyear' | '/weddingcard'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/forever' | '/newyear'
-  id: '__root__' | '/' | '/forever' | '/newyear'
+  to: '/' | '/forever' | '/newyear' | '/weddingcard'
+  id: '__root__' | '/' | '/forever' | '/newyear' | '/weddingcard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ForeverRoute: typeof ForeverRoute
   NewyearRoute: typeof NewyearRoute
+  WeddingcardRoute: typeof WeddingcardRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/weddingcard': {
+      id: '/weddingcard'
+      path: '/weddingcard'
+      fullPath: '/weddingcard'
+      preLoaderRoute: typeof WeddingcardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/newyear': {
       id: '/newyear'
       path: '/newyear'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ForeverRoute: ForeverRoute,
   NewyearRoute: NewyearRoute,
+  WeddingcardRoute: WeddingcardRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
