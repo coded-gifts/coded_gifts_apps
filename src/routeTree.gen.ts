@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WeddingcardRouteImport } from './routes/weddingcard'
+import { Route as RosedayRouteImport } from './routes/roseday'
 import { Route as NewyearRouteImport } from './routes/newyear'
 import { Route as ForeverRouteImport } from './routes/forever'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const WeddingcardRoute = WeddingcardRouteImport.update({
   id: '/weddingcard',
   path: '/weddingcard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RosedayRoute = RosedayRouteImport.update({
+  id: '/roseday',
+  path: '/roseday',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewyearRoute = NewyearRouteImport.update({
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/forever': typeof ForeverRoute
   '/newyear': typeof NewyearRoute
+  '/roseday': typeof RosedayRoute
   '/weddingcard': typeof WeddingcardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/forever': typeof ForeverRoute
   '/newyear': typeof NewyearRoute
+  '/roseday': typeof RosedayRoute
   '/weddingcard': typeof WeddingcardRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/forever': typeof ForeverRoute
   '/newyear': typeof NewyearRoute
+  '/roseday': typeof RosedayRoute
   '/weddingcard': typeof WeddingcardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/forever' | '/newyear' | '/weddingcard'
+  fullPaths: '/' | '/forever' | '/newyear' | '/roseday' | '/weddingcard'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/forever' | '/newyear' | '/weddingcard'
-  id: '__root__' | '/' | '/forever' | '/newyear' | '/weddingcard'
+  to: '/' | '/forever' | '/newyear' | '/roseday' | '/weddingcard'
+  id: '__root__' | '/' | '/forever' | '/newyear' | '/roseday' | '/weddingcard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ForeverRoute: typeof ForeverRoute
   NewyearRoute: typeof NewyearRoute
+  RosedayRoute: typeof RosedayRoute
   WeddingcardRoute: typeof WeddingcardRoute
 }
 
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/weddingcard'
       fullPath: '/weddingcard'
       preLoaderRoute: typeof WeddingcardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roseday': {
+      id: '/roseday'
+      path: '/roseday'
+      fullPath: '/roseday'
+      preLoaderRoute: typeof RosedayRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/newyear': {
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ForeverRoute: ForeverRoute,
   NewyearRoute: NewyearRoute,
+  RosedayRoute: RosedayRoute,
   WeddingcardRoute: WeddingcardRoute,
 }
 export const routeTree = rootRouteImport
